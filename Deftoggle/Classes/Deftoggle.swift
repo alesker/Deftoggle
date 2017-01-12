@@ -37,8 +37,12 @@ public class Deftoggle: UIControl {
         }
     }
 
-    public var thumbOffset: CGFloat = 0 {
+    public var thumbOffset: CGPoint = .zero {
         didSet {
+            self.thumbImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self).offset(self.thumbOffset.y)
+            }
+
             self.setOn(self.isOn, animated: false)
         }
     }
@@ -105,7 +109,7 @@ public class Deftoggle: UIControl {
         if animated {
             self.animateThumbPositionChange {
                 self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                    return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset).constraint
+                    return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset.x).constraint
                 })
             }
             self.animateThumbImageChange {
@@ -113,7 +117,7 @@ public class Deftoggle: UIControl {
             }
         } else {
             self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset).constraint
+                return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset.x).constraint
             })
             self.thumbImageView.image = self.thumbOnImage
         }
@@ -123,7 +127,7 @@ public class Deftoggle: UIControl {
         if animated {
             self.animateThumbPositionChange {
                 self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                    return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset).constraint
+                    return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset.x).constraint
                 })
             }
             self.animateThumbImageChange {
@@ -131,7 +135,7 @@ public class Deftoggle: UIControl {
             }
         } else {
             self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset).constraint
+                return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset.x).constraint
             })
             self.thumbImageView.image = self.thumbOffImage
         }
@@ -187,8 +191,8 @@ public class Deftoggle: UIControl {
     public override var intrinsicContentSize : CGSize {
         let maxThumbWidth = max(self.thumbOnImage?.size.width ?? 0, self.thumbOffImage?.size.width ?? 0)
         let maxThumbHeight = max(self.thumbOnImage?.size.height ?? 0, self.thumbOffImage?.size.height ?? 0)
-        let maxWidth = max(self.backgroundImage?.size.width ?? 0 + self.thumbOffset * 2, maxThumbWidth)
-        let maxHeight = max(self.backgroundImage?.size.height ?? 0, maxThumbHeight)
+        let maxWidth = max(self.backgroundImage?.size.width ?? 0 + self.thumbOffset.x * 2, maxThumbWidth)
+        let maxHeight = max(self.backgroundImage?.size.height ?? 0 + self.thumbOffset.y, maxThumbHeight)
         return CGSize(width: maxWidth, height: maxHeight)
     }
 }

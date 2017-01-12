@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         self.toggle.backgroundImage = #imageLiteral(resourceName: "toggle_bg")
         self.toggle.thumbOnImage = #imageLiteral(resourceName: "toggle_thumb_on")
         self.toggle.thumbOffImage = #imageLiteral(resourceName: "toggle_thumb_off")
+        self.toggle.thumbOffset = CGPoint(x:0, y:1)
+
         self.view.addSubview(self.toggle)
         self.toggle.snp.makeConstraints { make in
             make.center.equalToSuperview()
