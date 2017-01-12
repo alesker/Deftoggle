@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.toggle.backgroundImage = #imageLiteral(resourceName: "toggle_bg")
+        self.toggle.thumbOnImage = #imageLiteral(resourceName: "toggle_thumb_on")
+        self.toggle.thumbOffImage = #imageLiteral(resourceName: "toggle_thumb_off")
         self.view.addSubview(self.toggle)
         self.toggle.snp.makeConstraints { make in
             make.center.equalToSuperview()
