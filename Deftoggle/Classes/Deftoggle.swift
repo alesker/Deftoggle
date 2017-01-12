@@ -105,7 +105,7 @@ public class Deftoggle: UIControl {
         if animated {
             self.animateThumbPositionChange {
                 self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                    return make.right.equalTo(self.snp.right).offset(self.thumbOffset).constraint
+                    return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset).constraint
                 })
             }
             self.animateThumbImageChange {
@@ -113,7 +113,7 @@ public class Deftoggle: UIControl {
             }
         } else {
             self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                return make.right.equalTo(self.snp.right).offset(self.thumbOffset).constraint
+                return make.trailing.equalTo(self.snp.trailing).offset(self.thumbOffset).constraint
             })
             self.thumbImageView.image = self.thumbOnImage
         }
@@ -123,7 +123,7 @@ public class Deftoggle: UIControl {
         if animated {
             self.animateThumbPositionChange {
                 self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                    return make.left.equalTo(self.snp.left).offset(-self.thumbOffset).constraint
+                    return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset).constraint
                 })
             }
             self.animateThumbImageChange {
@@ -131,7 +131,7 @@ public class Deftoggle: UIControl {
             }
         } else {
             self.updateThumbImageViewConstraint(with: { make -> Constraint? in
-                return make.left.equalTo(self.snp.left).offset(-self.thumbOffset).constraint
+                return make.leading.equalTo(self.snp.leading).offset(-self.thumbOffset).constraint
             })
             self.thumbImageView.image = self.thumbOffImage
         }
